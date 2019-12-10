@@ -5,7 +5,7 @@ let router = express.Router();
 
 router.get("/", function (req, res){
 
-    let s = burger.select();
+    let s = burger.selectAll();
     let d = burger.devour();
 
     connection.query("SELECT * FROM burgers", function (err) {
