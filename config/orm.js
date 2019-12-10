@@ -32,6 +32,21 @@ let orm = {
         connection.query(queryString, [select], function (err){
             if(err) throw err;
         })
+    },
+
+    devour: function() {
+
+        let devour = [];
+        let queryString = "SELECT * FROM burgers";
+        connection.query(queryString, function (err, res){
+            if(err) throw err;
+            for (i=0; i<res.length; i++){
+                if(res[i].devoured === 1){
+                    devour.push(res[i])
+                }
+            }
+        })
+        return devour;
     }
 
 }
