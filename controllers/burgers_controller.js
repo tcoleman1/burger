@@ -8,15 +8,15 @@ router.get("/", function (req, res){
     let s = burger.selectAll();
     let d = burger.devour();
 
-    connection.query("SELECT * FROM burgers", function (err) {
-        if(err) throw err;
+   
 
-        res.render("index", {burgers: s, devoured: d})
-    })
+      res.render("index", {burgers: s, devoured: d})
+   
+ 
 });
 
 router.post("/api/burgers", function (req, res){
-    burger.inser(req.body.burger_name);
+    burger.insert(req.body.burger_name);
     res.status(200).end();
 })
 
