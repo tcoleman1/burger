@@ -3,33 +3,37 @@ let connection = require('./connection')
 
 let orm = {
 
-    selectAll: function(){
+    selectAll: function(cb){
         
-        let allburgers = [];
+      //  let allburgers = [];
          let queryString = "SELECT * FROM burgers"
          connection.query(queryString, function(err,res){
              if(err) throw err;
-             for(var i=0; i < res.length; i++){
-                if(res[i].devoured === 0){
-                    allburgers.push(res[i])
-                }
-             }
+            //  for(var i=0; i < res.length; i++){
+            //     if(res[i].devoured === 0){
+            //         allburgers.push(res[i])
+            //     }
+            //  }
+             cb(res)
+
          })
 
-         return allburgers;
+        // return allburgers;
     },
 
     insertOne: function(burger_name) {
         let queryString = "INSERT INTO burgers(burger_name) VALUES (?)"
-        connection.query(queryString, [burger_name], function(err){
+        connection.query(queryString, [burger_name], function(err,res){
             if (err) throw err;
+           
         })
+   
     },
 
 
-    updateOne: function (select){
+    updateOne: function (id){
         let queryString = "UPDATE burgers SET devoured = true WHERE id =?"
-        connection.query(queryString, [select], function (err){
+        connection.query(queryString, [id], function (err){
             if(err) throw err;
         })
     },

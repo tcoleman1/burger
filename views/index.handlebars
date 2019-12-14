@@ -32,11 +32,14 @@
             </td>
              <td>
         <ul>
+           
             {{#each devours}}
+            
         <li>
             <p> {{this.id}}. {{this.burger_name}} </p>
                     
         </li>
+            
             {{/each}}
     </ul>
         
@@ -49,35 +52,38 @@
 
     <form id ="newburger" class ="button">
 
-        <textarea type="text" name="burger"></textarea>
+        <textarea type="text" name="burger" id="addburger"></textarea>
         <div>
-            <button type="submit"> Submit Burger </button>
+            <button id="submit"> Submit Burger </button>
         </div>
             <p style="font-weight:bold"> ENTER THE NAME OF THE BURGER YOU'D LIKE TO EAT THEN PRESS SUBMIT</p>
     </form>
 
 
 
-    <script type = "text/javascript">
+    {{!-- <script type = "text/javascript">
     $("#submit").on("click", function(e){
         e.preventDefault();
 
+   // console.log($("#addburger").val());
         let submittedburger = {
-            burger_name : $("#newburger [name=burger]").val().trim()
+          //  burger_name : $("#newburger [name=burger]").val().trim()
+          burger_name : $("#addburger").val().trim()
         }
-        if(submittedburger.burger_name !== ""){
-            $.ajax("/api/burgers", {
-                type: POST,
-                data: submittedburger
-            }).then (function() {
-                location.reload() //this will reload the page with the new burger added
-            })
-        }
-        else {
-            alert("PLESE ENTER A BURGER NAME")
+
+        //console.log(submittedburger.burger_name)
+        if(submittedburger){
+
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: submittedburger
+    }).then(
+      function() {
+        console.log(`burger:`, submittedburger)
+      }
+    );
         }
     })
-
 
     $(".devour").on("click", function(e){
         event.preventDefault();
@@ -89,4 +95,6 @@
             location.reload();
         })
     })
-    </script>
+        
+    
+    </script> --}}
