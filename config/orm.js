@@ -10,7 +10,7 @@ let orm = {
          connection.query(queryString, function(err,res){
              if(err) throw err;
              for(var i=0; i < res.length; i++){
-                if(res[i].devoured === "true"){
+                if(res[i].devoured === 0){
                     allburgers.push(res[i])
                 }
              }
